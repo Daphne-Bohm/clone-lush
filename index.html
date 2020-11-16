@@ -1,0 +1,86 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/ba005702f7.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="styles/style.css">
+    <title>Lush clone</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo" id="logo">
+                <a href="#"><img src="img/lush-logo.gif" alt="lush logo"></a>
+            </div>
+
+            <ul class="nav-links">
+
+                <li class="nav-link message" id="message">
+                    <i class="far fa-comment message-icon" id="message-icon"></i>
+                    <div class="message-box" id="message-box">
+                        <div>
+                            <h3>Waar praten ze over</h3>
+                            <i class="fas fa-angle-left close-menu" id="close-menu"></i>
+                        </div>
+                        <p>Meer laden</p>
+                        <i class="fas fa-arrow-alt-circle-up"></i>
+                    </div>
+                </li>
+
+                <!--<li class="nav-link hidden-small-screen"><a href="#"><img src="img/lush-logo.gif" alt="lush logo"></a></li>-->
+
+                <li class="nav-link menu" id="menu">
+                    <i class="fas fa-bars"></i>
+                    <ul class="menu-items">
+                        <li class="menu-item"><a href="#">Producten</a></li>
+                        <li class="menu-item"><a href="#">Winkels</a></li>
+                        <li class="menu-item"><a href="#">Nieuwsbrief</a></li>
+                        <li class="menu-item">
+                            <i class="fas fa-user"><span class="inloggen">inloggen</span></i>
+                            <a href="#" class="aanmelden">aanmelden</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <!--<li class="nav-link menu-item">
+                    <a href="#">Producten</a>
+                    <i class="fas fa-angle-down"></i>
+                </li>
+
+                <li class="nav-link menu-item"><a href="#">Winkels</a></li>
+
+                <li class="nav-link menu-item"><a href="#" style="color: #008B00">Nieuwsbrief</a></li>-->
+
+                <li class="nav-link search" id="search">
+                    <i class="fas fa-search" style="transform:rotate(90deg)"></i>
+                    <div class="search-items" id="search-items">
+                        <input type="text" class="search-bar" id="search-bar" placeholder="Zoeken">
+                        <p class="close-search-bar" id="close-search-bar">sluiten</p>
+                    </div>
+                </li>
+
+               <!--<li class="nav-link hidden-small-screen"><a href="#"><i class="fas fa-user"></i></a></li>-->
+
+                <li class="nav-link shopping-bag" id="shopping-bag">
+                    <i class="fas fa-shopping-bag" id="bag"></i>
+                    <div class="shopping-bag-box" id="shopping-bag-box">
+                        <div>
+                            <i class="fas fa-angle-right close-shopping-bag" id="close-shopping-bag"></i>
+                            <h3>Jouw winkelmandje</h3>
+                        </div>
+                        <p>Er bevinden zich geen producten in jouw winkelmandje</p>
+                        <h2>Dit klinkt als een goed moment om te <a href="#">beginnen met winkelen</a>!</h2>
+                    </div>
+                </li>
+
+            </ul>
+        </nav>
+    </header>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="script.js"></script>
+
+    
+</body>
+</html>

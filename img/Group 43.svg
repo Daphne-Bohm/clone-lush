@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="15" viewBox="0 0 16 15">
+  <g id="Group_43" data-name="Group 43" transform="translate(-1162 -424)">
+    <g id="Ellipse_4" data-name="Ellipse 4" transform="translate(1166 424)" fill="#fff" stroke="#000" stroke-width="1">
+      <ellipse cx="4" cy="4.5" rx="4" ry="4.5" stroke="none"/>
+      <ellipse cx="4" cy="4.5" rx="3.5" ry="4" fill="none"/>
+    </g>
+    <g id="Rectangle_756" data-name="Rectangle 756" transform="translate(1162 428)" fill="#fff" stroke="#000" stroke-width="1">
+      <path d="M1,0H15a1,1,0,0,1,1,1V5a6,6,0,0,1-6,6H6A6,6,0,0,1,0,5V1A1,1,0,0,1,1,0Z" stroke="none"/>
+      <path d="M1,.5H15a.5.5,0,0,1,.5.5V5A5.5,5.5,0,0,1,10,10.5H6A5.5,5.5,0,0,1,.5,5V1A.5.5,0,0,1,1,.5Z" fill="none"/>
+    </g>
+    <line id="Line_5" data-name="Line 5" y2="5" transform="translate(1166.5 428.5)" fill="none" stroke="#000" stroke-width="1"/>
+    <line id="Line_6" data-name="Line 6" y2="5" transform="translate(1173.5 428.5)" fill="none" stroke="#000" stroke-width="1"/>
+  </g>
+</svg>

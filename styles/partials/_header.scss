@@ -1,0 +1,173 @@
+header{
+    background-color: black;
+    width: 100%;
+    .logo{
+        text-align: center;
+        padding: 5px;
+        border-bottom: 1px solid $dark-grey;
+        img{
+            width: 150px;
+            height: auto;
+        }
+    }
+    .nav-links{
+        color: white;
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 20px;
+
+        // ALGEMEEN
+        i{
+            color:white;
+            cursor: pointer;
+            font-size: 30px;
+            &:hover{
+                color: grey;
+            }
+        }
+        a{
+            color: white;
+            cursor: pointer;
+            &:hover{
+                color: grey;
+            }
+        }
+
+        // MESSAGE
+        .message{
+            .message-box{
+                background-color: black;
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                left: 0;
+                top: 0;
+                display: none;
+                div{
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 20px;
+                    border-bottom: 1px solid $dark-grey;
+                    i:hover{
+                        color: white;
+                    }
+                }
+                p{
+                    text-align: center;
+                    border-top: 1px white solid;
+                    padding: 16px;
+                    margin-top: 80px;
+                }
+                .fa-arrow-alt-circle-up{
+                    position: absolute;
+                    right: 20px;
+                    font-size: 44px;
+                    &:hover{
+                        color: white;
+                    }
+                }
+            }
+        }
+
+        // MENU
+        .menu{
+            .menu-items{
+                position: absolute;
+                top: 104px;
+                left: 0;
+                width: 100%;
+                background-color: black;
+                display: none;
+                .menu-item{
+                    border-bottom: 1px solid $dark-grey;
+                    padding: 16px;
+                    .inloggen{
+                        font-size: 16px;
+                        font-weight: normal;
+                        padding: 0 10px;
+                        border-right: 1px solid white;
+                    }
+                    .aanmelden{
+                        padding-left: 8px;
+                    }
+                }
+            }
+        }
+
+        // SEARCH
+        .search{
+            .search-items{
+                position: absolute;
+                top: 104px;
+                left: 0;
+                width: 100%;
+                background-color: black;
+                padding: 16px;
+                border-top: 1px solid $dark-grey;
+                display: none;
+                .search-bar{
+                    background-color: black;
+                    color: white;
+                    font-size: 16px;
+                    border: 0;
+                    outline: none;
+                }
+                .close-search-bar{
+                    text-decoration: underline;
+                    display: inline;
+                    float: right;
+                    cursor: pointer;
+                    &:hover{
+                        color: grey;
+                    }
+                }
+            }
+        }
+
+        // SHOPPING
+        .shopping-bag{
+            .shopping-bag-box{
+                background-color: black;
+                display: none;
+                width: 100%;
+                height: 100vh;
+                position: absolute;
+                left: 0;
+                top: 0;
+                div{
+                    margin: auto;
+                    padding: 20px;
+                    position: relative;
+                    text-align: center;
+                    .close-shopping-bag{
+                        position: absolute;
+                        left: 20px;
+                        top: 13px;
+                    }
+                }
+                p{
+                    text-align: center;
+                    padding: 16px;
+                    border-top: 1px solid $dark-grey;
+                }
+                h2{
+                    text-align: center;
+                    width: 80%;
+                    margin: 15px auto;
+                    a{
+                        text-decoration: underline;
+                        &:hover{
+                            background-color: white;
+                            color: black;
+                            text-decoration: none;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+
+/*@media only screen and (min-width: 768px) {*/
