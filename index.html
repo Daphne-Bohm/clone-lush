@@ -7,7 +7,8 @@
     <title>Lush clone</title>
 </head>
 <body>
-    <header>
+
+    <header class="header" id="header">
         <nav>
             <div class="logo" id="logo">
                 <a href="#"><img src="img/lush-logo.gif" alt="lush logo"></a>
@@ -15,6 +16,7 @@
 
             <ul class="nav-links">
 
+                <!--MESSAGE-->
                 <li class="nav-link message" id="message">
                     <i class="far fa-comment message-icon" id="message-icon"></i>
                     <div class="message-box" id="message-box">
@@ -27,11 +29,13 @@
                     </div>
                 </li>
 
-                <!--<li class="nav-link hidden-small-screen"><a href="#"><img src="img/lush-logo.gif" alt="lush logo"></a></li>-->
+                <!--LUSH LOGO-->
+                <li class="nav-link hidden-small-screen"><a href="#"><img src="img/lush-logo.gif" alt="lush logo"></a></li>
 
+                <!--HAMBURGER MENU-->
                 <li class="nav-link menu" id="menu">
-                    <i class="fas fa-bars"></i>
-                    <ul class="menu-items">
+                    <i class="fas fa-bars" id="menu-icon"></i>
+                    <ul class="menu-items" id="menu-items">
                         <li class="menu-item"><a href="#">Producten</a></li>
                         <li class="menu-item"><a href="#">Winkels</a></li>
                         <li class="menu-item"><a href="#">Nieuwsbrief</a></li>
@@ -42,27 +46,34 @@
                     </ul>
                 </li>
 
-                <!--<li class="nav-link menu-item">
-                    <a href="#">Producten</a>
-                    <i class="fas fa-angle-down"></i>
-                </li>
+                <!--PRODUCTEN-->
+                <li class="nav-link hidden-small-screen"><a href="#">Producten</a></li>
 
-                <li class="nav-link menu-item"><a href="#">Winkels</a></li>
+                <!--WINKELS-->
+                <li class="nav-link hidden-small-screen"><a href="#">Winkels</a></li>
 
-                <li class="nav-link menu-item"><a href="#" style="color: #008B00">Nieuwsbrief</a></li>-->
+                <!--NIEUWSBRIEF-->
+                <li class="nav-link hidden-small-screen"><a href="#" style="color: #008B00">Nieuwsbrief</a></li>
 
+                <!--SEARCH-->
                 <li class="nav-link search" id="search">
-                    <i class="fas fa-search" style="transform:rotate(90deg)"></i>
+                    <i class="fas fa-search fa-rotate-90" id="search-icon"></i>
                     <div class="search-items" id="search-items">
+                        <i class="fas fa-search search-icon-hidden" id="search-icon-hidden"></i>
                         <input type="text" class="search-bar" id="search-bar" placeholder="Zoeken">
                         <p class="close-search-bar" id="close-search-bar">sluiten</p>
                     </div>
                 </li>
 
-               <!--<li class="nav-link hidden-small-screen"><a href="#"><i class="fas fa-user"></i></a></li>-->
+                <!--INLOGGEN-->
+               <li class="nav-link hidden-small-screen login"><a href="#">
+                   <i class="fas fa-user"><span class="inloggen hidden-md-screen">inloggen</span></i>
+                   <a href="#" class="aanmelden hidden-md-screen">aanmelden</a>
+                </a></li>
 
+                <!--SHOPPING BAG-->
                 <li class="nav-link shopping-bag" id="shopping-bag">
-                    <i class="fas fa-shopping-bag" id="bag"></i>
+                    <i class="fas fa-shopping-bag" id="bag-icon"></i>
                     <div class="shopping-bag-box" id="shopping-bag-box">
                         <div>
                             <i class="fas fa-angle-right close-shopping-bag" id="close-shopping-bag"></i>
@@ -78,7 +89,6 @@
     </header>
 
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="script.js"></script>
 
     

@@ -1,4 +1,4 @@
-header{
+.header{
     background-color: black;
     width: 100%;
     .logo{
@@ -32,6 +32,9 @@ header{
                 color: grey;
             }
         }
+        .hidden-small-screen{
+            display: none;
+        }
 
         // MESSAGE
         .message{
@@ -42,7 +45,9 @@ header{
                 position: absolute;
                 left: 0;
                 top: 0;
-                display: none;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+                z-index: 5;
                 div{
                     display: flex;
                     justify-content: space-between;
@@ -57,6 +62,10 @@ header{
                     border-top: 1px white solid;
                     padding: 16px;
                     margin-top: 80px;
+                    cursor: pointer;
+                    &:hover{
+                        text-decoration: underline;
+                    }
                 }
                 .fa-arrow-alt-circle-up{
                     position: absolute;
@@ -105,6 +114,9 @@ header{
                 padding: 16px;
                 border-top: 1px solid $dark-grey;
                 display: none;
+                .search-icon-hidden{
+                    display: none;
+                }
                 .search-bar{
                     background-color: black;
                     color: white;
@@ -115,8 +127,8 @@ header{
                 .close-search-bar{
                     text-decoration: underline;
                     display: inline;
-                    float: right;
                     cursor: pointer;
+                    float: right;
                     &:hover{
                         color: grey;
                     }
@@ -127,47 +139,167 @@ header{
         // SHOPPING
         .shopping-bag{
             .shopping-bag-box{
-                background-color: black;
-                display: none;
                 width: 100%;
                 height: 100vh;
+                background-color: black;
                 position: absolute;
-                left: 0;
+                transform: translateX(680px);
+                transition: transform 0.3s ease;
+                right: 0;
                 top: 0;
                 div{
-                    margin: auto;
+                    display: flex;
                     padding: 20px;
-                    position: relative;
-                    text-align: center;
-                    .close-shopping-bag{
-                        position: absolute;
-                        left: 20px;
-                        top: 13px;
+                    border-bottom: 1px solid $dark-grey;
+                    h3{
+                        margin: auto;
                     }
                 }
                 p{
                     text-align: center;
-                    padding: 16px;
-                    border-top: 1px solid $dark-grey;
+                    margin: 20px 0 40px 0;
+                    font-size: 16px;
                 }
                 h2{
                     text-align: center;
                     width: 80%;
-                    margin: 15px auto;
+                    margin: auto;
+                    font-size: 24px;
                     a{
                         text-decoration: underline;
                         &:hover{
+                            text-decoration: none;
                             background-color: white;
                             color: black;
-                            text-decoration: none;
                         }
                     }
+                }
+            }
+        }
+
+        .login{
+            font-size: 16px;
+            .inloggen{
+                font-size: 16px;
+                font-weight: normal;
+                border-right: 1px solid white;
+                padding: 0 10px;
+            }
+            .aanmelden{
+                padding: 0 8px;
+            }
+        }
+    }
+}
+
+/************************************************************JS CLASSES*******************************************/
+
+// small
+.showMessageSM{
+    transform: translateX(0) !important;
+}
+
+.showBagSM{
+    transform: translateX(0) !important;
+}
+
+// medium
+.showMessageMD{
+    transform: translateX(-680px) !important;
+}
+
+.showBagMD{
+    transform: translateX(680px) !important;
+}
+
+// header
+.move680px{
+    transform: translateX(680px);
+}
+
+.goBack680px{
+    transform: translateX(-680px);
+}
+
+// other
+.showMenuOrSearch{
+    display: block !important;
+}
+
+.showLoop{
+    //transform: translateY(0);
+    animation: showLoop 0.6s ease forwards;
+}
+
+@keyframes showLoop{
+    from {transform: translateX(-500px) rotate(90deg);}
+    to {transform: translateX(0) rotate(90deg);}
+}
+
+/************************************************************MEDIA*******************************************/
+
+@media only screen and (min-width: 768px) {
+    .header{
+        transition: transform 0.3s ease;
+        .logo{
+            display: none;
+        }
+        .nav-links{
+            align-items: center;
+            font-size: 20px;
+            // ALGEMEEN
+            .hidden-small-screen{
+                display: block;
+            }
+            .hidden-md-screen{
+                display: none;
+            }
+            // MESSAGE
+            .message{
+                .message-box{
+                    width: 680px;
+                }
+            }
+            // MENU
+            .menu{
+                display: none;
+            }
+            // SEARCH
+            .search{
+                .search-items{
+                    top: 0px;
+                    height: 82px;
+                    padding: 20px 40px;
+                    .search-icon-hidden{
+                        display: inline-block;
+                        transform: translateX(-500px);
+                    }
+                    .search-bar{
+                        font-size: 28px;
+                        padding: 0 10px;
+                    }
+                    .close-search-bar{
+                        font-size: 16px;
+                        padding-top: 10px;
+                    }
+                }
+            }
+            // SHOPPING
+            .shopping-bag{
+                .shopping-bag-box{
+                    width: 680px;
                 }
             }
         }
     }
 }
 
-
-
-/*@media only screen and (min-width: 768px) {*/
+@media only screen and (min-width: 1000px) {
+    .header{
+        .nav-links{
+            .hidden-md-screen{
+                display: inline;
+            }
+        }
+    }
+}
