@@ -178,9 +178,9 @@
         }
 
         .login{
-            font-size: 16px;
+            font-size: 14px;
             .inloggen{
-                font-size: 16px;
+                font-size: 14px;
                 font-weight: normal;
                 border-right: 1px solid $white;
                 padding: 0 10px;
@@ -227,7 +227,6 @@
 }
 
 .showLoop{
-    //transform: translateY(0);
     animation: showLoop 0.6s ease forwards;
 }
 
