@@ -4,5 +4,4 @@ A clone of the website of lush Nederland.
 
 ## Motivation
 
-Learning to use Github.
-Programming a real life website.
+Learning to use Github and cloning a real life website.
