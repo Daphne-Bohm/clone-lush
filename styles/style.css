@@ -366,6 +366,28 @@ a {
   }
 }
 
+@media only screen and (min-width: 1400px) {
+  .header .nav-links {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    position: relative;
+  }
+  .header .nav-links .nav-link {
+    margin: 0 40px;
+  }
+  .header .nav-links .message-icon {
+    position: absolute;
+    left: 20px;
+    top: 35%;
+  }
+  .header .nav-links .bag-icon {
+    position: absolute;
+    right: 20px;
+    top: 35%;
+  }
+}
+
 .banner {
   background-color: #eaeaea;
   padding: 20px 0;

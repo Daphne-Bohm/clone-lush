@@ -297,8 +297,33 @@
 @media only screen and (min-width: 1000px) {
     .header{
         .nav-links{
+            // ALGEMEEN
             .hidden-md-screen{
                 display: inline;
+            }
+        }
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .header{
+        .nav-links{
+            justify-content: center;
+            position: relative;
+            .nav-link{
+                margin: 0 40px;
+            }
+            // MESSAGE
+            .message-icon{
+               position: absolute;
+               left: 20px;
+               top: 35%;
+            }
+            // SHOPPING
+            .bag-icon{
+                position: absolute;
+                right: 20px;
+                top: 35%;
             }
         }
     }
