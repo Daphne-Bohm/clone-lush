@@ -1,0 +1,92 @@
+(function ($) {
+    'use strict';
+
+    function isEmail (email) {
+        var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+        return regex.test(email);
+    }
+
+    Drupal.behaviors.checkout = {
+        attach: function () {
+            if($('body').hasClass('page-user') || $('body').hasClass('page-checkout')) {
+                //On focus of element in checkout process, highlight form highlight-area
+                $('body form').each(function(){
+                    var form = $(this);
+                    $('input, select, textarea', form).focus(function() {
+                        var elem = $(this);
+                        var highlight = $(elem).closest('.highlight-area');
+
+                        $('.highlight-area').removeClass('swatch-black5');
+                        highlight.addClass('swatch-black5');
+                    });
+                });
+            }
+
+            if($('form.user-login').length > 0) {
+                //Search typed into
+                var elem = $('form.user-login .form-item-name input.form-text');
+                // Save current value of element
+                elem.data('oldVal', elem.val());
+
+                // Look for changes in the value
+                elem.bind('propertychange keyup input paste', function (){
+                    // If value has changed...
+                    if (elem.data('oldVal') != elem.val()) {
+                        // Updated stored value
+                        elem.data('oldVal', elem.val());
+                        var newVal = elem.val();
+
+                        // Do action
+                        //if auto correct is not visible, show it and replace text string
+                        if(isEmail(newVal)) {
+                            if(elem.hasClass('fail')) {
+                                elem.removeClass('fail');
+                                elem.addClass('pass');
+                            } else if(elem.hasClass('pass')) {
+
+                            } else {
+                                elem.addClass('pass');
+                            }
+                        }
+                        else {
+                            if(elem.hasClass('pass')) {
+                                elem.removeClass('pass');
+                                elem.addClass('fail');
+                            } else if(elem.hasClass('fail')) {
+
+                            } else {
+                                elem.addClass('fail');
+                            }
+                        }
+                    }
+                });
+            }
+            $(document).ajaxComplete(function() {
+                var addressbook_wrapper = $('#user-addressbook-ajax-wrapper');
+                if ($('.form-item .form-text', addressbook_wrapper).length > 0) {
+                    $(addressbook_wrapper).once('scroll-address-focus', function(){
+                        var address_field = $('.form-item .form-text', addressbook_wrapper).eq(0);
+                        $(address_field).focus(function(){
+                            $(address_field).css('outline', '2px solid black');
+                        });
+                        $(address_field).blur(function(){
+                            $(address_field).css('outline', 'none');
+                        });
+                        $('html, body').animate({
+                            scrollTop: $(address_field).offset().top + ($('header').height() - 300)
+                        }, 1000, function(){
+                            $(address_field).focus();
+                        });
+                    });
+                }
+            });
+        },
+        isNumberKey: function (event) {
+            var charCode = (event.which) ? event.which : event.keyCode;
+            if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+            return true;
+        }
+    };
+})(jQuery);

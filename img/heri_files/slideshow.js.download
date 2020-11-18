@@ -1,0 +1,18 @@
+
+(function ($) {
+    Drupal.behaviors.slideshow = {
+        attach: function (context, settings) {
+
+            $(document).ready(function() {
+                //Slideshow
+                $('.slideshow').each(function(){
+                    $(".slideshow_wrapper", this).carouFredSel({
+                        'responsive' : true,
+                        'pagination' : '.slideshow_actions .slideshow_actions_inner'
+                    });
+                });
+            });
+
+        }
+    };
+})(jQuery);

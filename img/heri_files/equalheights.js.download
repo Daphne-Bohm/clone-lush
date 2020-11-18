@@ -1,0 +1,108 @@
+(function ($) {
+    
+    function setConformingHeight(el, newHeight) {
+        // set the height to something new, but remember the original height in case things change
+        el.data('originalHeight', (typeof el.data('originalHeight') === 'undefined') ? (el.height()) : (el.data('originalHeight')));
+        el.css('height', newHeight);
+    }
+
+    function getOriginalHeight(el) {
+        // if the height has changed, send the originalHeight
+        return (typeof el.data('originalHeight') === 'undefined') ? (el.height()) : (el.data('originalHeight'));
+    }
+    
+    Drupal.behaviors.equalheights = {
+        attach: function () {
+            //left & main column equal heights
+            $.fn.columnConform();
+        }
+    };
+
+    $(window).resize(function() {
+        $.fn.columnConform();
+        // only run if needed
+        if ($('.equal-heights2').length){
+            $.fn.columnConform2nd();
+        }
+    });
+
+    Drupal.behaviors.equalheights2nd = {
+        attach: function (context) {
+            // only run if needed
+            if ($('.equal-heights2', context).length){
+                $.fn.columnConform2nd();
+            }
+        }
+    };
+
+    $.fn.columnConform = function() {
+        var currentTallest = 0,
+            currentRowStart = 0,
+            rowDivs = [],
+            elements = jQuery('.equal-heights');
+
+        // first remove originalHeight data and reset height
+        elements.removeData('originalHeight').height('auto');
+        
+        // find the tallest DIV in the row, and set the heights of all of the DIVs to match it.
+        elements.each(function() {
+            var $this = jQuery(this);
+            if (currentRowStart !== $this.position().top) {
+                // we just came to a new row. Set all the heights on the completed row
+                for (var currentDiv = 0; currentDiv < rowDivs.length; currentDiv++) {
+                    setConformingHeight(rowDivs[currentDiv], currentTallest);
+                }
+
+                // set the variables for the new row
+                rowDivs = []; // empty the array
+                currentRowStart = $this.position().top;
+                currentTallest = getOriginalHeight($this);
+                rowDivs.push($this);
+            } else {
+                // another div on the current row. Add it to the list and check if it's taller
+                rowDivs.push($this);
+                currentTallest = (currentTallest < getOriginalHeight($this)) ? (getOriginalHeight($this)) : (currentTallest);
+            }
+            // do the last row
+            for (var currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
+                setConformingHeight(rowDivs[currentDiv], currentTallest);
+            }
+        });
+    };
+
+    $.fn.columnConform2nd = function() {
+        
+        var currentTallest2nd = 0,
+            currentRowStart2nd = 0,
+            rowDivs2nd = [],
+            elements2nd = jQuery('.equal-heights2');
+
+        // first remove originalHeight data and reset height
+        elements2nd.removeData('originalHeight').height('auto');
+
+        // find the tallest DIV in the row, and set the heights of all of the DIVs to match it.
+        elements2nd.each(function() {
+            var $this = jQuery(this);
+            if (currentRowStart2nd !== $this.position().top) {
+                // we just came to a new row. Set all the heights on the completed row
+                for (var currentDiv2nd = 0 ; currentDiv2nd < rowDivs2nd.length ; currentDiv2nd++) {
+                    setConformingHeight(rowDivs2nd[currentDiv2nd], currentTallest2nd);
+                }
+
+                // set the variables for the new row
+                rowDivs2nd = []; // empty the array
+                currentRowStart2nd = $this.position().top;
+                currentTallest2nd = getOriginalHeight($this);
+                rowDivs2nd.push($this);
+            } else {
+                // another div on the current row. Add it to the list and check if it's taller
+                rowDivs2nd.push($this);
+                currentTallest2nd = (currentTallest2nd < getOriginalHeight($this)) ? (getOriginalHeight($this)) : (currentTallest2nd);
+            }
+            // do the last row
+            for (var currentDiv2nd = 0 ; currentDiv2nd < rowDivs2nd.length ; currentDiv2nd++) {
+                setConformingHeight(rowDivs2nd[currentDiv2nd], currentTallest2nd);
+            }
+        });
+    };
+})(jQuery);

@@ -1,0 +1,48 @@
+(function ($) {
+    Drupal.behaviors.droplist = {
+        attach: function (context, settings) {
+
+            $(document).ready(function() {
+                //Slideshow
+                $('.ajax-droplist').once('ajax-droplist', function(){
+                    var droplist = $(this);
+                    $(".arrow", droplist).click(function(){
+
+                        $('ul',droplist).slideToggle(200,function(){
+                            droplist.toggleClass('droplist-closed');
+                        });
+                    });
+                    var replace = droplist.attr('ajax-replace');
+
+                    $('li',droplist).click(function(){
+                        var arrow = $('.ajax-droplist-label .arrow').detach();
+                        $('.ajax-droplist-label', droplist).html($(this).text());
+                        $('.ajax-droplist-label', droplist).append(arrow);
+
+                        $('ul',droplist).slideToggle(200,function(){
+                            droplist.toggleClass('droplist-closed');
+                        });
+                        //if type is user_content_creation, change user_content_creation link to different variables
+                        var type = droplist.attr('ajax-type');
+                        var option =$(this).attr('ajax-option');
+                        if(type == 'reviews') {
+                            var load_more = $('.load-more-reviews');
+                            load_more.attr('data-ajax-sort', option);
+                            load_more.attr('data-reviews-loaded', 0);
+                            var href = '/reviews/ajax/more/'+load_more.attr('data-node')+'/0/5/'+option+'/ajax';
+                            load_more.attr('href', href);
+                            // Reassign ajax object
+                            load_more.removeClass('ajax-processed');
+                            load_more.unbind('click');
+                            Drupal.detachBehaviors(load_more);
+                            Drupal.attachBehaviors(load_more);
+                            $('.object-reviews-reviews-container').empty();
+                            load_more.click();
+                        }
+                    });
+                });
+            });
+
+        }
+    };
+})(jQuery);

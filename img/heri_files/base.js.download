@@ -1,0 +1,117 @@
+(function($) {
+    // here $ would be point to jQuery object
+    $(document).ready(function() {
+        //Grid overlay cookie
+        if($.cookie('grid_check') === null) {
+            $.cookie('grid_check', '0');
+        }
+        var cookie = $.cookie("grid_check");
+        if(cookie == '1') {
+            $('#grid_overlay').show();
+            if($('body').hasClass('show-grid-both')) {
+                $('#grid_overlay_max').show();
+            }
+            $("#grid_check").prop('checked', true);
+        }
+        else {
+            $('#grid_overlay').hide();
+            $('#grid_overlay_max').hide();
+        }
+        //Formatting cookie
+        if($.cookie('formatting_check') === null) {
+            $.cookie('formatting_check', '0');
+        }
+        var cookie2 = $.cookie("formatting_check");
+        if(cookie2 == '1') {
+            $('pre').show();
+            $("#formatting_check").prop('checked', true);
+        }
+        else {
+            $('pre').hide();
+        }
+        //For each 5 star item, save variable of its count
+        $( ".rating-fivestar ul" ).each(
+            function() {
+                var status = $('li a.rate-fivestar-btn-filled', $(this)).length;
+
+                $(this).children().hover(
+                    function()
+                    {
+                        // Append rate-fivestar-btn-filled class to all the a-elements except the a-elements after the hovered element
+                        var $this = $(this);
+                        $this.siblings().children('a').addClass('rate-fivestar-btn-filled').removeClass('rate-fivestar-btn-empty');
+                        $this.children('a').addClass('rate-fivestar-btn-filled').removeClass('rate-fivestar-btn-empty');
+                        $this.nextAll().children('a').removeClass('rate-fivestar-btn-filled').addClass('rate-fivestar-btn-empty');
+                    },
+                    function()
+                    {
+                        // Restore the current vote status
+                        $(this).parent().children().children('a').removeClass('rate-fivestar-btn-filled').addClass('rate-fivestar-btn-empty');
+                        $(this).parent().children().slice(0,status).children('a').removeClass('rate-fivestar-btn-empty').addClass('rate-fivestar-btn-filled');
+                    }
+                );
+            }
+        );
+        $("#grid_overlay_cog").click(function() {
+            $('#grid_overlay_cog_inner').toggle();
+        });
+
+        $("#grid_check").change(function() {
+            var cookie = $.cookie("grid_check");
+            if(cookie == '0') {
+                $('#grid_overlay').fadeIn();
+                if($('body').hasClass('show-grid-both')) {
+                    $('#grid_overlay_max').fadeIn();
+                }
+                $.cookie("grid_check", "1");
+            }
+            else {
+                $('#grid_overlay').fadeOut();
+                $('#grid_overlay_max').fadeOut();
+                $.cookie("grid_check", "0");
+            }
+        });
+        $("#formatting_check").change(function() {
+            $('pre').toggle('fast');
+            var cookie = $.cookie("formatting_check");
+            if(cookie == '0') {
+                $.cookie("formatting_check", "1");
+            }
+            else {
+                $.cookie("formatting_check", "0");
+            }
+        });
+
+        // Move any page loads to a particular anchor down 120px to avoid
+        // header bar overlaying them
+        var identifier = window.location.hash;
+        if (identifier !== "") {
+          identifier = identifier.substring(1);
+          if ($("[name="+identifier+"]").length > 0){
+            var offset = $("[name="+identifier+"]").offset().top - 120;
+            if (offset < 0) offset = 0;
+            $(document).scrollTop(offset);
+          }
+        }
+
+        // message placeholder
+        if ($('.absolute-message').length) {
+            setTimeout(function () {
+                $('.absolute-message').fadeOut(1000);
+            }, 3500);
+        }
+
+        $('.product-module-title a').ellipsis({
+          lines: 2,
+          ellipClass: 'ellip',
+          responsive: true
+        });
+
+        // Use translatable Olark string.
+        if (typeof olark === 'function') {
+          olark('api.box.onShow', function () {
+            $('#habla_closebutton_a').attr('data-tr-msg', Drupal.t('Close'));
+          });
+        }
+    });
+})(jQuery);

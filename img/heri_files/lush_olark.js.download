@@ -1,0 +1,36 @@
+(function ($) {
+
+  /**
+   * Provides lush custom olark functionality.
+   */
+  Drupal.behaviors.lushCustomOlark = {
+    attach: function (context, settings) {
+      // Hide lush olark popup.
+      var lush_olark_popup = $('.lush-olark-popup');
+      var lush_olark_popup_no_thanks_button = $('.lush-olark-popup-no-thanks-button');
+      var lush_olark_popup_i_agree_button = $('.lush-olark-popup-i-agree-button');
+
+      // By default we hide lush olark cookie popup.
+      lush_olark_popup.hide();
+      // When click on chat with us button, we show lush olark popup.
+      $('.lush-olark-button').click(function () {
+        lush_olark_popup.show().addClass('fadeIn');
+      });
+      // When click on 'no thanks' button hide popup and do nothing.
+      lush_olark_popup_no_thanks_button.click(function () {
+        lush_olark_popup.hide().removeClass('fadeIn');
+      });
+      // When click on 'i agree/OK' button, refresh current page and set cookie that
+      // user has agreed with olark cookies.
+      lush_olark_popup_i_agree_button.click(function () {
+        // Set cookie for agreement with olark cookies.
+        var date = new Date();
+        date.setTime(date.getTime() + (365*24*60*60*1000));
+        $.cookie('lush_olark_agreement', '1', { expires: date });
+        // Refresh current page.
+        location.hash = 'lusholarkchat';
+        location.reload();
+      });
+    }
+  };
+})(jQuery);

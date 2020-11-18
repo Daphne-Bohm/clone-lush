@@ -1,0 +1,47 @@
+(function ($) {
+
+  Drupal.behaviors.lushCookiebot = {
+    attach: function (context, settings) {
+      // Check if we need to block Vimeo cookies.
+      if (settings.lush_cookiebot && settings.lush_cookiebot.vimeo_block) {
+        $('iframe').each(function () {
+          var iframeSRC = $(this).attr('src');
+          if (typeof iframeSRC !== 'undefined' && iframeSRC.indexOf('vimeo') !== -1) {
+            $(this).attr('src', iframeSRC + '?dnt=1');
+          }
+        });
+      }
+
+      // Check if we need to block YouTube cookies.
+      if (settings.lush_cookiebot && settings.lush_cookiebot.youtube_block) {
+        $('iframe').each(function () {
+          var iframeSRC = $(this).attr('src');
+          if (typeof iframeSRC !== 'undefined' && iframeSRC.indexOf('youtube') !== -1) {
+            var newIframeSRC = iframeSRC.replace("youtube.com", "youtube-nocookie.com");
+            $(this).attr('src', newIframeSRC);
+          }
+        });
+      }
+      if (settings.lush_cookiebot && settings.lush_cookiebot.blacklist) {
+        var blacklistDomains = settings.lush_cookiebot.blacklist;
+        $.each(blacklistDomains, function (index, value) {
+          $('iframe').each(function () {
+            var iframeSRC = $(this).attr('src');
+            if (typeof iframeSRC !== 'undefined' && iframeSRC.indexOf(value) !== -1) {
+              $(this).replaceWith('<strong>Content from ' + value + ' is not allowed.</strong>');
+            }
+          });
+          $('a').each(function () {
+            if ($(this).attr('href')) {
+              var aHref = $(this).attr('href');
+              if (aHref.indexOf(value) !== -1) {
+                $(this).replaceWith('<strong>Content from ' + value + ' is not allowed.</strong>');
+              }
+            }
+          });
+        });
+      }
+    }
+  };
+
+})(jQuery);

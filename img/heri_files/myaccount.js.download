@@ -1,0 +1,110 @@
+(function ($) {
+    Drupal.behaviors.myaccount = {
+        attach: function (context, settings) {
+
+            $('.object-account-orders-wrapper .account-order .mega-accordion-label').once('myaccountorderdetail', function() {
+                $(this).click(function () {
+                    row = $(this).parent();
+                    if( !$(row).hasClass('has-data') ) {
+                        $.get('/' + Drupal.settings.pathPrefix + 'ajax/get/orderdetails/' + $(row).data('order-id')  , function(data, status, req) {
+                            if (status == "error") {
+                                $('.account-orders-show-more a').html('<div class="ajax-error">Cannot connect to server!</div>');
+                            }
+                            else {
+                                $(row).find('.mega-accordion-content').html(data);
+                                $(row).addClass('has-data');
+                            }
+                        });
+                    }
+                });
+            });
+
+            $('.object-account-orders-wrapper .account-order-archive .mega-accordion-label').once('myaccountorderdetail', function() {
+                $(this).click(function () {
+                    row = $(this).parent();
+                    if( !$(row).hasClass('has-data') ) {
+                        $.get('/' + Drupal.settings.pathPrefix + 'ajax/get/orderarchivedetails/' + $(row).data('order-id')  , function(data, status, req) {
+                            if (status == "error") {
+                                $('.account-orders-show-more a').html('<div class="ajax-error">Cannot connect to server!</div>');
+                            }
+                            else {
+                                $(row).find('.mega-accordion-content').html(data);
+                                $(row).addClass('has-data');
+                            }
+                        });
+                    }
+                });
+            });
+
+            //Adding ajax call for load more orders
+            $('.account-orders-show-more a').once('myaccountorder', function() {
+                $('.account-orders-show-more a').click(function (e) {
+                    e.preventDefault();
+                    $.get('/ajax/get/myorders/' + $('.object-account-orders-wrapper .account-order').length  , function(data, status, req) {
+                        if (status == "error") {
+                            $('.account-orders-show-more a').toggleClass('working');
+                            $('.account-orders-show-more a').html('<div class="ajax-error">Cannot connect to server!</div>');
+                        }
+                        else {
+                            if(data['more'] == true) {
+                                //$('.account-orders-show-more a').data('orders-loaded');
+                            } else {
+                                $('.account-orders-show-more').remove();
+                            }
+                            $('.object-account-orders-wrapper').append(data['orders']);
+                            Drupal.attachBehaviors();
+                        }
+                    });
+                });
+            });
+
+            // Adding ajax call for load more orders archive.
+            $('.account-orders-archive-show-more a').once('myaccountorder', function() {
+                $('.account-orders-archive-show-more a').click(function (e) {
+                    e.preventDefault();
+                    $.get('/ajax/get/myordersarchive/' + $('.object-account-orders-wrapper .account-order-archive').length, function(data, status, req) {
+                        if (status == "error") {
+                            $('.account-orders-archive-show-more a').toggleClass('working');
+                            $('.account-orders-archive-show-more a').html('<div class="ajax-error">Cannot connect to server!</div>');
+                        }
+                        else {
+                            if (data['more'] == true) {
+                                //$('.account-orders-show-more a').data('orders-loaded');
+                            } else {
+                                $('.account-orders-archive-show-more').remove();
+                            }
+                            $('.object-account-orders-wrapper').append(data['orders']);
+                            Drupal.attachBehaviors();
+                        }
+                    });
+                });
+            });
+
+            // Open first order if it exists
+            if ($('.object-account-orders-wrapper .account-order').length > 0){
+              $('.object-account-orders').once('initial-open', function(){
+                var accordion = $('.object-account-orders-wrapper').children(":first");
+                accordion.find('.mega-accordion-label').triggerHandler('click');
+                // make sure accordion is open
+                if (!$(accordion).hasClass('open')){
+                  $('.mega-accordion-content', accordion).slideToggle();
+                  $(accordion).toggleClass('open');
+                }
+              });
+            }
+
+            // Open first order archive if it exists
+            if ($('.object-account-orders-wrapper .account-order-archive').length > 0){
+              $('.object-account-orders').once('initial-open', function(){
+                var accordion = $('.object-account-orders-wrapper').children(":first");
+                accordion.find('.mega-accordion-label').triggerHandler('click');
+                // make sure accordion is open
+                if (!$(accordion).hasClass('open')){
+                  $('.mega-accordion-content', accordion).slideToggle();
+                  $(accordion).toggleClass('open');
+                }
+              });
+            }
+        }
+    };
+})(jQuery);
