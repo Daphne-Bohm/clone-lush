@@ -1,5 +1,5 @@
 .header{
-    background-color: black;
+    background-color: $black;
     width: 100%;
     .logo{
         text-align: center;
@@ -258,6 +258,10 @@
                 .message-box{
                     width: 680px;
                 }
+            }
+            // SECOND LOGO
+            .second-logo{
+                transform: scale(1.1);
             }
             // MENU
             .menu{
