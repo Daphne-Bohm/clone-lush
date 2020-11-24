@@ -4,8 +4,8 @@
     width: 90%;
     display: grid;
     grid-gap: 25px;
-    grid-template-columns: repeat(2, 1fr);
-    grid-auto-rows: repeat(2, minmax(350px, 1fr)); 
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    grid-template-rows: repeat(2, minmax(250px, 300px));
     grid-template-areas: 
     "item1 item1"
     "item2 item3"
@@ -24,6 +24,9 @@
     
     // ALGEMEEN CSS PRODUCT
     .product{
+        *{
+            z-index: -1;
+        }
         .product-content{
             position: relative;
             line-height: 1.6;
@@ -37,6 +40,7 @@
                 align-items: center;
                 justify-content: center;
                 text-align: center;
+                z-index: 1;
                 p{
                     line-height: .9;
                     color: white;
@@ -44,11 +48,12 @@
                 }
             }
             .product-img{
-                max-width: 160px;
+                width: 160px;
+                margin-left: auto;
+                margin-right: auto;
+                display: block;
                 img{
                     width: 100%;
-                    display: block;
-                    margin: auto;
                 }
             }
             .product-text{
@@ -84,17 +89,19 @@
     // ALGEMEEN CSS IN DE HOOFDROL
     .in-de-hoofdrol{
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: space-between;
+        justify-content: space-between;
         position: relative;
         z-index: 1;
         h5{
             font-size: 12px;
             font-weight: normal;
-            margin-bottom: 30px;
             z-index: 10;
         }
         h3{
             font-size: 24px;
-            margin-bottom: 60px;
             z-index: 10;
         }
         a{
@@ -222,7 +229,6 @@
     }
     .item2{
         grid-area: item2;
-        background-image: url('/img/banner-small.png');
         background-size: cover;
     }
     .item3{
@@ -230,13 +236,11 @@
     }
     .item4{
         grid-area: item4;
-        background-image: url('/img/snow-fairy-promotie.jpg');
         background-size: cover;
         height: 67vh;
     }
     .item5{
         grid-area: item5;
-        background-image: url('/img/afro-hair.jpg');
         background-size: cover;
     }
     .item6{
@@ -254,7 +258,6 @@
     }
     .item7{
         grid-area: item7;
-        background-image: url('/img/body-sprays.jpg');
         background-size: cover;
     }
     .item8{
@@ -262,7 +265,6 @@
     }
     .item9{
         grid-area: item9;
-        background-image: url('/img/zoom.jpg');
         background-size: cover;
     }
     .item10{
@@ -273,7 +275,6 @@
     }
     .item12{
         grid-area: item12;
-        background-image: url('/img/kerstpakket.jpg');
         background-size: cover;
     }
     .item13{
@@ -284,7 +285,6 @@
     }
     .item15{
         grid-area: item15;
-        background-image: url('/img/lush_policy.jpg');
         background-size: cover;
     }
     .item16{
@@ -295,7 +295,6 @@
     }
     .item18{
         grid-area: item18;
-        background-image: url('/img/lotion.jpg');
         background-size: cover;
     }
     .item19{
@@ -309,7 +308,6 @@
     }
     .item22{
         grid-area: item22;
-        background-image: url('/img/masker.jpg');
         background-size: cover;
     }
     .item23{
@@ -321,11 +319,16 @@
 }
 
 /****************************MEDIA************************/
+@media only screen and (min-width: 600px) {
+    .container-products{
+        width: 85%;
+   }
+}
+
 @media only screen and (min-width: 768px) {
 
     .container-products{
-        grid-template-columns: repeat(4, 1fr);
-        grid-auto-rows: repeat(4, minmax(350px, 1fr)); 
+        //width: 85%;
         grid-template-areas: 
         "item1 item1 item2 item3"
         "item1 item1 item5 item7"
@@ -333,8 +336,8 @@
         "item4 item4 item4 item4"
         "item10 item11 item12 item13"
         "item14 item15 item15 item16"
-        "item21 item19 item20 item18"
-        ". item23 item24 item22";
+        "item17 item19 item20 item18"
+        "item21 item23 item24 item22";
 
         //ITEM 1
         .item1{
@@ -345,10 +348,11 @@
             .item1A{
                 width: 100%;
                 .product-img{
+                    margin-left: 100px;
+                    margin-right: 0;
+                    display: block;
                     img{
                         width: 300px;
-                        display: block;
-                        margin: auto;
                     }
                 }
             }
@@ -386,10 +390,10 @@
     }
 }
 
-@media only screen and (min-width: 1100px) {
+@media only screen and (min-width: 1400px) {
 
     .container-products{
-        grid-template-columns: repeat(5, 1fr);
+        width: 75%;
         grid-template-areas: 
         "item1 item1 item2 item3 item5"
         "item1 item1 item6 item6 item7"
